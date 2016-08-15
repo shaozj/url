@@ -80,3 +80,19 @@ function port (protocol){
       return location.port;
   }
 }
+
+/**
+ * Return value of a query.
+ *
+ * @param  key {String} query 
+ * @return {String} the value of a query
+ * @api public
+ */
+ exports.queryUrl = function (key) {
+  var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+  var r = window.location.search.substr(1).match(reg);
+  if (r != null) return unescape(r[2]);
+  return '';
+}
+
+
